@@ -70,8 +70,20 @@ public class CardGame extends Player {
 		setUp(player1, 1);
 		setUp(player2, 2);
 		
-		drawMulligans(player1, player2);
-		drawMulligans(player2, player1);
+		
+		if (player.getMulligansDrawn() == opponent.getMulligansDrawn()) {
+			
+			System.out.println("\nBoth players drew " + player.getMulligansDrawn() + " mulligans, neither player gets to draw extra cards");
+			
+		}
+	
+		else if (player2.getMulligansDrawn() > player1.getMulligansDrawn()){
+			drawMulligans(player1, player2);
+		}
+		
+		else if (player1.getMulligansDrawn() > player2.getMulligansDrawn()){
+			drawMulligans(player2, player1);
+		}
 		
 		player1.drawPrizes();
 		player2.drawPrizes();
@@ -183,6 +195,16 @@ public class CardGame extends Player {
 	 * @param opponent
 	 */
 	public void drawMulligans(Player player, Player opponent) {
+		
+		if (opponent.getMulligansDrawn() > player.getMulligansDrawn()) {
+			
+			opponent.setMulligansDrawn(opponent.getMulligansDrawn() - player.getMulligansDrawn());
+			
+			player.setMulligansDrawn(0);
+			
+		}
+	
+		
 		if (opponent.getMulligansDrawn() != 0) {
 			System.out.println("\n" + opponent.getPlayerName() + " drew " + opponent.getMulligansDrawn() + " mulligans.");
 			System.out.println(player.getPlayerName() + ", would you like to draw for mulligans? (Input 1 for yes, 0 for no)");
@@ -191,6 +213,7 @@ public class CardGame extends Player {
 				player.drawCards(opponent.getMulligansDrawn());
 			}
 		}
+		
 	}
 	
 	

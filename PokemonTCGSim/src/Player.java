@@ -117,6 +117,10 @@ public class Player {
 		mulligansDrawn++;
 	}
 	
+	public void setMulligansDrawn(int mulligans) {
+		mulligansDrawn = mulligans;
+	}
+	
 	
 	/**
 	 * Fills the deck with Cards for use in Monte Carlo simulations
